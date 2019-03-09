@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 300px;
+            height: 300px;
+            border: #ffff00;
+        }
+        ul{
+            overflow: hidden;
+        }
+        li{
+            width: 30px;
+            height: 20px;
+            background: #faceaf;
+            float:left;
+            line-height: 20px;
+            text-align: center;
+        }
+        li.color{
+            background: #c05f6f;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul>
+            <li class="color">001</li>
+            <li>002</li>
+            <li>003</li>
+            <li>004</li>
+        </ul>
+        <div id="content">
+            <div>111的内容</div>
+            <div>222的内容</div>
+            <div>333的内容</div>
+            <div>444的内容</div>
+        </div> 
+    </div>
+    <script>
+        var ali=document.getElementsByTagName("li");
+        var oContent=document.getElementById("content");
+        var aDiv=oContent.getElementsByTagName("div");
+    
+
+    </script>
+</body>
+</html>
