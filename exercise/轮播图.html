@@ -5,132 +5,148 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-            *{
-                margin: 0;
-                padding: 0;
-            }
-            #container{
-                width: 750px;
-                height: 291px;
-                margin:100px auto;
-                position: relative;
-            }
-            #img-box img{
-                width: 750px;
-                height: 291px;
-                display: none;
-            }
-            #img-box .selected{
-                display: block;
-            }
-            #btn-box{
-                list-style: none;
-                position: absolute;
-                right:10px;
-                bottom:10px;
-            }
-            #btn-box li{
-                float: left;
-                width: 20px;
-                height: 20px;
-                background: rgba(0,0,0,0.4);
-                border-radius: 5px;
-                text-align: center;
-                line-height: 20px;
-                color: #fff;
-                margin-right:5px;
-                cursor: pointer;
-            }
-            #btn-box .active{
-                background: #ff0036;
-            }
-            #prev,#next{
-                width: 20px;
-                height: 20px;
-                background: rgba(0,0,0,0.4);
-                position: absolute;
-                bottom: 5px;
-                text-align: center;
-                line-height: 20px;
-                color:#fff;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            #prev{
-                left:5px;
-            }
-            #next{
-                left:30px;
-            }
-        </style>
-</head>
-<body>
-        <div id="container">
-                <div id="img-box">
-                    <img class="selected" src="img/1.jpg">
-                    <img src="img/2.jpg">
-                    <img src="img/3.jpg">
-                    <img src="img/4.jpg">
-                    <img src="img/5.jpg">
-                </div>
-                <ul id="btn-box">
-                    <li class="active">1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                </ul>
-                <span id="prev">&lt;</span>
-                <span id="next">&gt;</span>
-            </div>
-        
-            <script>
-                var aLi = document.getElementsByTagName('li');
-                var aImg = document.getElementsByTagName('img');
-                var oNext = document.getElementById('next');
-                var oPrev = document.getElementById('prev');
-                // 记录当前显示的索引
-                var iNow = 0;
-                for(var i=0; i<aLi.length; i++){
-                    aLi[i].idx = i;
-                    aLi[i].onclick = function(){
-                        // for(var j=0;j<aLi.length; j++){
-                        //     aLi[j].className = "";
-                        //     aImg[j].className = "";
-                        // }
-                        // // this.className = "active";
-                        // aLi[this.idx].className = "active" 
-                        // aImg[this.idx].className = "selected";
-                        change(this.idx);
-                        iNow = this.idx;
-                    }
-                }
-                oNext.onclick = function() {
-                    iNow++;
-                    // 点击到最后一张图  回到第一张图
-                    if(iNow == aLi.length){
-                        iNow = 0;
-                    }
-                    change(iNow);
-                }
-                oPrev.onclick = function(){
-                    iNow--;
-                    if(iNow == -1){
-                        iNow = aLi.length-1;
-                    }
-                    change(iNow);
-                }
-                function change(num){
-                    for(var i=0; i<aLi.length;i++){
-                        aLi[i].className = "";
-                        aImg[i].className = "";
-                    }
-                    aLi[num].className = "active";
-                    aImg[num].className = "selected";
-                }
-                
-            </script>
-        
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            width: 700px;
+            height: 300px;
+            margin:100px auto;      /*快级元素水平居中*/
+            position: relative;    /*父元素 子元素 想对定位 绝对定位*/
 
+        }
+        #btn-box{
+            right: 10px;
+            bottom: 10px;
+            position:absolute;/*定位为什么必须放在这个里 不能放在#btn-box li中*/
+            /*若放在li中相当于对每个li定位 li会找离他最近以定位的祖先元素找到找到container*/
+            /*3个就会重合*/
+        }
+        /*对ul进行操作 和 对ul的li操作有什么不同*/
+        #btn-box li{
+            list-style: none;
+            float:left;         /*浮动相当于以前ul中有3个列表是竖着的，现在浮动ul中列表将元素横着 */
+            width: 30px;
+            height: 20px;
+            margin-right:10px;
+            background:rgba(0,0,0,0.4);
+            color:skyblue;
+            text-align:center;
+            line-height: 20px;
+            border-radius: 5px;     /*边框圆滑*/
+            cursor: pointer;       /*小手*/
+            /* position:absolute; */
+            /* right:10px;  */
+            /* bottom:10px; */
+            /* 为什么定位加在这里就会变成1 2 3 这三个按钮重叠 三在最上 */
+            /* 对父元素移动子元素也会跟着移动 */
+
+        }
+        #img-box img{
+            width: 700px;         /*可以将三个图片先重合吗*/
+            height: 300px;
+            display:none;
+        }
+        #img-box .selected{
+            display:block;
+        } 
+        #btn-box .active{
+            background: #ffefaf;
+        }
+        #prve,#next{
+            position:absolute;
+            width: 30px;
+            height: 20px;
+            background:rgba(0,0,0,0.4);
+            color:skyblue;
+            bottom:10px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #prve{
+            left:10px;
+        }
+        #next{
+            left: 50px;
+        }
+
+    </style>
+</head>
+<body> 
+    <div id="container">
+            <div id="img-box">
+                    <img class="selected" src="img/1.jpg" >
+                    <img src="img/2.jpg" >
+                    <img src="img/3.jpg" >
+            
+            </div>
+            <ul id="btn-box">
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+            <span id="prve">&lt;</span>
+            <span id="next">&gt;</span>
+    </div>  
+    <script>
+        var oContainer=document.getElementById("container");
+        // var aLi=document.getElementById("btn-box"); 也可以
+        var aLi=document.getElementsByTagName("li");
+        var aImg=document.getElementsByTagName("img");
+        var oPrve=document.getElementById("prve");
+        var oNext=document.getElementById("next");
+        var now=0;
+        var timer;
+       
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index=i;
+            aLi[i].onclick=function(){
+                // for(var j=0;j<aLi.length;j++){
+                //     aLi[j].className="";
+                //     aImg[j].className="";
+                // }
+                // aLi[this.index].className="active";
+                // aImg[this.index].className="selected";
+                change(this.index);
+                now=this.index;
+            }
+        }
+        oPrve.onclick=function(){
+            now--;
+            if(now==-1){
+                now=aLi.length-1;
+            }
+            change(now);
+        }
+        oNext.onclick=function(){
+            now++;
+            if(now==aLi.length){
+                now=0;
+            }
+            change(now);
+        }
+        function change(num){
+            for(var j=0;j<aLi.length;j++){
+                    aLi[j].className="";
+                    aImg[j].className="";
+                }
+                aLi[num].className="active";
+                aImg[num].className="selected";
+        }
+        timer=setInterval(function(){
+            oNext.onclick();
+        },1000);
+        oContainer.onmouseover=function(){ //鼠标滑入时
+            clearInterval(timer);
+        }
+        oContainer.onmouseout=function(){  //鼠标滑出时
+            timer=setInterval(function(){
+            oNext.onclick();
+        },1000);
+        }
+    </script>
 </body>
 </html>
