@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 300px;
+            background: #959;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">click</button>
+    <div id="div1"></div>
+    <script>
+        var odiv1=document.getElementById('div1');
+        var obtn=document.getElementById('btn');
+        obtn.onclick=function(){
+            var timer=setInterval(function(){
+                if(odiv1.offsetWidth>=800){
+                    clearInterval(timer);
+                }
+                odiv1.style.width=odiv1.offsetWidth+2+"px";
+
+            },1000);
+        }
+    </script>
+</body>
+</html>

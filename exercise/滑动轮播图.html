@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            width: 700px;
+            height: 300px;
+            margin:100px auto;      
+            position: relative; 
+            overflow: hidden;
+
+        }
+        #btn-box{
+            right: 10px;
+            bottom: 10px;
+            position:absolute;
+        }
+        #btn-box li{
+            list-style: none;
+            float:left;     
+            width: 30px;
+            height: 20px;
+            margin-right:10px;
+            background:rgba(0,0,0,0.4);
+            color:skyblue;
+            text-align:center;
+            line-height: 20px;
+            border-radius: 5px;     /*边框圆滑*/
+            cursor: pointer;       
+        }
+        #img-box{
+            width: 2100px;
+            height: 300px;
+            position: absolute;
+            top:0px;
+            left:0px;
+            transition: left 2s ease; /*过渡*/
+        }
+        #img-box img{
+            width: 700px;         
+            height: 300px;
+            float:left;
+        }
+        #btn-box .active{
+            background: #ffefaf;
+        }
+        #prve,#next{
+            position:absolute;
+            width: 30px;
+            height: 20px;
+            background:rgba(0,0,0,0.4);
+            color:skyblue;
+            bottom:10px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #prve{
+            left:10px;
+        }
+        #next{
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+            <div id="img-box">
+                    <img src="img/1.jpg" >
+                    <img src="img/2.jpg" >
+                    <img src="img/3.jpg" >
+                
+            </div>
+            <ul id="btn-box">
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+            <span id="prve">&lt;</span>
+            <span id="next">&gt;</span>
+    </div>       
+    <script>
+        var oContainer=document.getElementById('container');
+        var aLi=document.getElementsByTagName("li");
+        var oImgBox=document.getElementById("img-box");
+        var oprve=document.getElementById('prve');
+        var onext=document.getElementById('next');
+
+        var now=0;
+        var timer;
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index=i;
+            aLi[i].onclick=function(){
+                // for(var j=0;j<aLi.length;j++){
+                //     aLi[j].className="";
+                // }
+                // aLi[this.index].className="active";
+                // oImgBox.style.left=-this.index*700+"px";
+                change(this.index);
+                now=this.index;
+            }
+        }
+        oprve.onclick=function(){
+            now--;
+            if(now==-1){
+                now=aLi.length-1;
+            }
+            change(now);
+        }
+        onext.onclick=function(){
+            now++;
+            if(now==aLi.length){
+                now=0;
+            }
+            change(now);
+        }
+        function change(num){
+            for(var j=0;j<aLi.length;j++){
+                    aLi[j].className="";
+                }
+                aLi[num].className="active";
+                oImgBox.style.left=-num*700+"px";
+        }
+        timer=setInterval(function(){
+            onext.onclick();
+        },2000);
+
+        oContainer.onmouseover=function(){
+            clearInterval(timer);
+        }
+
+        oContainer.onmouseout=function(){
+            timer=setInterval(function(){
+            onext.onclick();
+        },2000);
+        }
+        
+    </script>
+</body>
+</html>

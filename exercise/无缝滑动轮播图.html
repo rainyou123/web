@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 750px;
+            height: 291px;
+            margin:100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #img-box{
+            width:3750px;
+            position: absolute;
+            left:0;
+            top:0;
+            /* left  属性 变化 过度效果 */
+            /* transition: left 1s ease ; */
+        }
+        #img-box img{
+            width: 750px;
+            height: 291px;
+            float: left;
+        }
+
+        #btn-box{
+            list-style: none;
+            position: absolute;
+            right:10px;
+            bottom:10px;
+        }
+        #btn-box li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 5px;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            margin-right:5px;
+            cursor: pointer;
+        }
+        #btn-box .active{
+            background: #ff0036;
+
+        }
+        #prev,#next{
+            width: 20px;
+            height: 20px;
+            background: rgba(0,0,0,0.4);
+            position: absolute;
+            bottom: 5px;
+            text-align: center;
+            line-height: 20px;
+            color:#fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #prev{
+            left:5px;
+        }
+        #next{
+            left:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="img-box">
+            <img src="img/1.jpg">
+            <img src="img/2.jpg">
+            <img src="img/3.jpg">
+            <img src="img/1.jpg">
+        </div>
+        <ul id="btn-box">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+    
+        </ul>
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+    <script src="jslib.js"></script>
+    <script>
+        var oNext = document.getElementById('next');
+        var oPrev = document.getElementById('prev');
+        var oImgBox = document.getElementById('img-box');
+        var aImg=oImgBox.getElementsByTagName('img');
+        var iNow = 0;
+        oNext.onclick=function(){
+            iNow++;
+            if(iNow==aImg.length){
+                oImgBox.style.left=0;
+                iNow=1;
+            }
+            change(iNow);
+        
+        }
+        oPrev.onclick=function(){
+            iNow--;
+            if(iNow==-1){
+                oImgBox.style.left=-( aImg.length-1)*750+"px" //不能用right 有left再用right就不对
+                iNow=aImg.length-2;
+            }
+            change(iNow);
+        }
+        function change(num){
+            animate(oImgBox,{   //不用过渡 transition 直接做动画 否则从第一张到第一张会可以被看见
+                left: -num*750
+            });
+        }
+    </script>
+
+</body>
+</html>
