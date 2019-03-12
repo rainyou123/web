@@ -96,7 +96,15 @@
         var oPrev = document.getElementById('prev');
         var oImgBox = document.getElementById('img-box');
         var aImg=oImgBox.getElementsByTagName('img');
+        var aLi=document.getElementsByTagName('li');   //！！！！！老错重点！！！！
         var iNow = 0;
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].index = i;
+            aLi[i].onclick = function(){
+                change(this.index);
+                iNow = this.index;
+            }
+        }
         oNext.onclick=function(){
             iNow++;
             if(iNow==aImg.length){
@@ -118,6 +126,10 @@
             animate(oImgBox,{   //不用过渡 transition 直接做动画 否则从第一张到第一张会可以被看见
                 left: -num*750
             });
+            for(var i=0; i<aLi.length; i++){
+                aLi[i].className = "";
+            }
+            aLi[num==5?0:num].className = "active";
         }
     </script>
 
