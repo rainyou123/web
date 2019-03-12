@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var x=Math.random();
+        // var y=Math.random();
+        // console.log(x);
+        // console.log(y);
+        // function Max(x,y){
+        //     return x>y?x:y;
+        // }
+        // var z=Max(x,y);
+        // console.log(z);
+        // 计算10！
+        var a=1;
+        for(var i=1;i<=10;i++){
+            a=a*i;
+        }
+        console.log(a);
+        function fac(x){
+            if(x==1){
+                // debugger; 调试
+                return 1;
+            }else{
+                x=x*fac(x-1);
+                return x;
+            }
+        }
+        console.log(fac(10));
+
+    var mytext="Here is <br> some text!"
+    document.write(mytext);
+    </script>
+</body>
+</html>
