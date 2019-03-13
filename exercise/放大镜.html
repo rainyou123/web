@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #smallBox,#bigBox{
+            width:400px;
+            height: 400px;
+            float: left;
+        }
+        #smallBox{
+            position: relative;
+        }
+        #bigBox{
+            overflow: hidden;
+            display: none;
+        }
+        #drag{
+            width: 200px;
+            height: 200px;
+            top: 0px;                  /*一开始不是0的话是auto自动的*/
+            left:0px;                  /*一开始不是0的话是auto自动的*/
+            background:rgba(0,0,0,0.4);
+            position: absolute;
+            display:none;
+        }
+        #bigBox{
+            position: relative;   /*大图left可以变但是不动应为没定位*/
+        }
+        #bigImg{
+            position:absolute;   /*大图的定位于大图的框 大图left可以变但是不动应为没定位*/
+        }
+    </style>
+</head>
+<body>
+        <div id="smallBox">
+            <img src="img/4.jpg" alt="">
+            <span id="drag"></span>
+        </div>
+        <div id="bigBox">
+            <img id='bigImg' src="img/5.jpg" alt="">
+        </div>
+    <script>
+        var oSmallBox = document.getElementById('smallBox');
+        var oDrag = document.getElementById('drag');
+        var oBigBox = document.getElementById('bigBox');
+        var oBigImg = document.getElementById('bigImg');
+        oSmallBox.onmouseover = function(){
+            oDrag.style.display = "block";
+            oBigBox.style.display = "block";
+            oSmallBox.onmousemove = function(e){  
+                //当划入smallbox中时开始出现drag 所以给smallbox绑划入事件
+                var x = e.clientX - oDrag.offsetWidth/2;
+                var y = e.clientY - oDrag.offsetHeight/2;
+                if(x < 0){
+                    x = 0
+                }
+                if(y < 0){
+                    y = 0
+                }
+                // x、y轴最大值 
+                var xMax = oSmallBox.offsetWidth - oDrag.offsetWidth;
+                var yMax = oSmallBox.offsetHeight - oDrag.offsetHeight;
+                if(x > xMax){
+                    x = xMax;
+                }
+                if(y > yMax){
+                    y = yMax;
+                }
+                oDrag.style.left = x +"px";
+                oDrag.style.top = y +"px";
+                var smallMax = oSmallBox.offsetWidth - oDrag.offsetWidth;
+                var bigMax = oBigImg.offsetWidth - oBigBox.offsetWidth;
+                var xBili = oDrag.offsetLeft/smallMax;
+                oBigImg.style.left = - bigMax*xBili +"px";
+                var smallMaxY = oSmallBox.offsetHeight-oDrag.offsetHeight;
+                var bigMaxY = oBigImg.offsetHeight - oBigBox.offsetHeight;
+                var yBili =oDrag.offsetTop/smallMaxY;
+                oBigImg.style.top = - bigMaxY*yBili +"px";
+             }
+        }    
+        oSmallBox.onmouseout=function(){
+            oDrag.style.display = "";
+            oBigBox.style.display = "";
+        }
+        
+    </script>
+    
+</body>
+</html>
