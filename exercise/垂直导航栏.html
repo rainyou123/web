@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #div1{
+            width: 200px;
+        }
+        h1{
+            border: 1px solid #000;
+            background: #c4971b;
+            color:skyblue;
+        }
+        ul{
+            border: 1px solid #000;
+            color:skyblue;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id='div1'>
+        <h1>管理区</h1>
+        <ul>
+            <li>001</li>
+            <li>002</li>
+            <li>003</li>
+        </ul>
+        <h1>文件区</h1>
+        <ul>
+            <li>001</li>
+            <li>002</li>
+            <li>003</li>
+        </ul>
+    </div>
+    <script>
+        var aH1=document.getElementsByTagName('h1');
+        var aUl=document.getElementsByTagName('ul');
+        // for(var i=0;i<aH1.length;i++){
+        //     aH1[i].index=i;
+        //     aH1[i].onclick=function(){
+        //         var oUl=aUl[this.index];
+        //         // aUl[this.index].style.display='block';
+        //         if(oUl.style.display=="" || oUl.style.display=='none'){
+        //             oUl.style.display='block';
+        //         }else if(oUl.style.display=='block'){
+        //             oUl.style.display='none';
+        //         }
+        //     }
+        // }
+    //用js些得属性写在内联上 第一次进来取不到所以是空的
+        for(var i=0;i<aH1.length;i++){
+            aH1[i].index=i;
+            aH1[i].flag=false;
+            aH1[i].onclick=function(){
+                if(this.flag==false){
+                    aUl[this.index].style.display='block';
+                }else{
+                    aUl[this.index].style.display='none';
+                }
+                this.flag=!this.flag;
+            }
+        }
+    </script>
+</body>
+</html>
