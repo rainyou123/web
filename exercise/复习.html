@@ -13,6 +13,7 @@
                  引用数据类型：（数组 对象 存在堆内存中）
         */
         /*
+            typeof不能判断是数组还是对象
             判断是数组还是对象
             1.Array.isArray();
             2.实例化对象.constructor 返回构造函数
@@ -20,9 +21,10 @@
         */    
         console.log(Array.isArray([1,2,3]));
         function p(){   //声明类：p类
+        
         }
-        var p1=new p();//实例化对象
-        console.log(p1.constructor);
+        var pp=new p();//实例化对象
+        console.log(pp.constructor);
         var arr=[1,2,3];
         console.log(arr instanceof Array);
 
