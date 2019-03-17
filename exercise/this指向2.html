@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        var aLi=document.getElementsByTagName('li');
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].onclick=function(){  
+                //正常若不加延迟点谁就调用谁li【1】，li【2】，li【3】
+                
+                setTimeout(function(){
+                    console.log(this);
+                // },1000)   若不加 bind（this） 他指向的就是window（因为setTimeout）
+                // 现在想让他还是调用li【1】，li【2】，li【3】所以加了bind
+                //}.call(this),1000) 不用call 因为用call就立即调用 而不会等1000秒后
+                // setTimeout自己调用 延迟失效
+                }.bind(this),1000) //此处this是外头this
+            }
+            
+        }
+    </script>
+</body>
+</html>
