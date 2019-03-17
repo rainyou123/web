@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        外部函数里有内部函数 ，内部函数引用外部函数中的局部变量，
+        当外部函数执行完以后,局部变量不会释放，
+        
+        形成闭包的情况
+        1.外部函数 里有内部函数
+        2.内部函数引用外部函数中局部不变量或者参数
+        闭包好处 
+            1 使外部函数中的变量长期驻扎在内存中
+            2 获取索引
+        闭包缺点
+            内存溢出  泄漏
+     -->
+    <script>
+        //js作用域 1.全局作用域 和 2.函数作用域
+        function a(){
+            var x = 1;
+            console.log(x);
+        }
+        a(); 
+        //当a执行完毕 x垃圾回收
+        
+        function a(){
+            var x=1;
+            return function(){
+                x++;
+                console.log(x);
+            }
+        }
+        var b = a();
+        // a中的x不会被释放 因为形成闭包被内部函数引用；
+        b();   //2
+        b();   //3
+        
+    </script>
+</body>
+</html>
