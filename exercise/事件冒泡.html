@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #836689;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <script>
+        var oDiv1=document.getElementById('div1');
+        var oDiv2=document.getElementById('div2');
+        oDiv1.addEventListener('click',function(){
+            console.log('111捕获')
+        },true);
+        oDiv2.addEventListener('click',function(){
+            console.log('222捕获')
+        },true);
+        oDiv1.addEventListener('click',function(){
+            console.log('111冒泡')
+        },false);
+
+        
+        //点击2的触发完2的点击事件 就会触发1的点击事件
+        oDiv2.addEventListener('click',function(){  
+            console.log('222冒泡')
+        },false);
+    </script>
+</body>
+</html>

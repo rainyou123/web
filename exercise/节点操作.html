@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <div id="div1">
+            <p>p标签</p>
+        </div>
+    </ul>
+    <script>
+         /*
+            节点操作
+            1.创建节点 createElement
+            2.插入节点（内部的后边） appendChild 
+            3.替换   replaceChild (newnode,oldnode)
+            4.删除   removeChild(); 只能通过父元素删除子元素
+            5.插入   insertBefore (newnode,refnode)
+        */
+        var oDiv1 = document.getElementById('div1');
+        var oP = document.getElementsByTagName('p')[0];
+        //正常BytagName取得是数组，为了取个对象所以相当于对数组加个下标
+
+        //创建节点
+        var oH1=document.createElement('h1');
+        oH1.innerHTML = 'haha'; //为H1标签添加内容
+
+        // oDiv1.appendChild(oH1);在内部后边插入节点
+        // oDiv1.replaceChild(oH1,oP);用oH1替换oP
+        // oDiv1.removeChild(oP); 删除oP
+        oDiv1.insertBefore(oH1,oP);//在之前插入节点
+
+    </script>
+</body>
+</html>

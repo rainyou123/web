@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li id="li1">aaa</li>
+        <li id='li2'>bbb</li>
+        <li id="li3">ccc</li>
+    </ul>
+    <script>
+        var oLi1=document.getElementById('li1');
+        var oLi2=document.getElementById('li2');
+        var oUl=document.getElementsByTagName('ul')[0];
+        var oH1=document.createElement('h1');
+        oH1.innerHTML="插入的标签";
+        oUl.appendChild(oH1);
+    </script>
+</body>
+</html>

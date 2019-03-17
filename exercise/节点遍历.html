@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <ul>
+        <li id="li1">aaaa</li>
+        <li id="li2">bbbb</li> 
+        
+    </ul>  
+    <script>
+        var oLi1=document.getElementById('li1');
+        var oLi2=document.getElementById('li2');
+        oLi1.nextElementSibling.style.background='pink';
+        //找到下一个元素节点 但ie浏览器不兼容
+        //oLi1.nextSibling;在标准浏览器下找到的是所有节点文本节点、
+        //元素节点、注释节点。。。;在ie浏览器下找到的就是元素节点
+        function next(elem){
+            do{
+                elem=elem.nextSibling; 
+                //如果该节点的下一个节点为空 则是null
+                //null是不能判断节点类型的
+            }while(elem && elem.nodeType !=1)//是否是有效值 节点类型不是元素节点
+            return elem;
+        }
+        var oNext=next(oLi1);
+        oNext.style.background='green';
+        function prev(elem){
+            do{
+                elem=elem.previousSibling;
+            }while(elem && elem.nodeType !=1)
+            return elem;
+        }
+        var oPrev=prev(oLi2);
+        alert(oNext);
+        alert(oPrev);
+    </script>             
+</body>
+</html>
