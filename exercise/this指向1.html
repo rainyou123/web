@@ -14,13 +14,13 @@
                 </div>
             </div>
         <script>
-                // this指向window
+                // 1.普通函数 this指向window
                 function a(x,y){
                     console.log(this,x,y);
                 }
                 // a();
         
-                // this指向window   
+                // 2.定时器 this指向window   
                 // setInterval(function(){
                 //     console.log(this);
                 // }, 20);
