@@ -7,18 +7,26 @@
     <title>Document</title>
     <script src="jquery-1.12.4.js"></script>
     <script>
+        // 事件 等页面中所有的资源都加载完毕
+        // 两个事件一样 底下会覆盖上面
         window.onload=function(){
             console.log('111');
         }
         window.onload=function(){
             console.log('222');
         }
+
+
+        // 文档就绪函数 等页面中文档结构加载完就执行 不等资源
+        //输出会两个都输出 相当于两个方法不会底下覆盖上面
         $(document).ready(function(){
             console.log('333');
         });
         $(document).ready(function(){
             console.log('444');
         });
+
+        // 最后结果是 333 444 222
     </script>
 </head>
 <body>
