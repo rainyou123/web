@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <p>P标签</p>
+        <div id="div2"></div>
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $('#div1').append('<h1>哆啦C梦</h1>').css('background','blue');
+        $('#div1').after('<h2>kitty猫呀</h2>')//.css('background',"pink");
+        $('#div1').html('<h3>我是html()</h3>');
+    </script>
+</body>
+</html>
