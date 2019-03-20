@@ -85,13 +85,36 @@
     </div>
     <script src="jquery-1.12.4.js"></script>   
     <script>
+        var iNow=0;
+        var $li=$('#btn-box li');
+        var $img=$('#img-box img');
         $('#btn-box li').on('click',function(){
-            $(this).addClass('active').siblings().removeClass('active');
-            $('#img-box img').eq($(this).index()).addClass('selected').siblings().removeClass('selected');
+            change($(this).index());
+            // $(this).addClass('active').siblings().removeClass('active');
+            // $('#img-box img').eq($(this).index()).addClass('selected').siblings().removeClass('selected');
+            // $(this).index() 当前点击按钮的索引
         })
-        $('prve').on('click',function(){
-            
+        $('#next').on('click',function(){
+            iNow++;
+            if(iNow==$li.length){
+                iNow=0;
+            }
+            change(iNow);
         })
+        $('#prve').on('click',function(){
+            iNow--;
+            if(iNow==-1){
+                iNow=$li.length-1;
+            }
+            change(iNow);
+        })
+        function change(num){
+            $li.eq(num).addClass('active').siblings().removeClass('active');
+            $img.eq(num).addClass('selected').siblings().removeClass('selected');
+        }
+        setInterval(function(){
+            $('#next').trigger('click');
+        },1000);
     </script>
 </body>
 </html>
