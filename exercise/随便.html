@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>随便</title>
 </head>
 <body>
-    <ul>
-        <li id="li1">aaa</li>
-        <li id='li2'>bbb</li>
-        <li id="li3">ccc</li>
-    </ul>
+    <!-- <div id="div1" name="div1111" >edrftyguhijkol</div> -->
+    <input id="div1" name="aaaaaa"/>
+
+
     <script>
-        var oLi1=document.getElementById('li1');
-        var oLi2=document.getElementById('li2');
-        var oUl=document.getElementsByTagName('ul')[0];
-        var oH1=document.createElement('h1');
-        oH1.innerHTML="插入的标签";
-        oUl.appendChild(oH1);
+        var oDiv = document.getElementById('div1');
+
+        var name = "The Window";
+        　　
+        var object = {　　　　
+            name: "My Object",
+            getNameFunc: function () {　　　　　　
+                return function () {　　　　　　　　
+                    console.log(this.name);　　　　　　
+                };
+            }
+        };
+    
+        oDiv.onclick = object.getNameFunc();
+        // 点击div1输出啥？
+
+
     </script>
 </body>
 </html>
