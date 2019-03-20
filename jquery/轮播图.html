@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            width: 700px;
+            height: 300px;
+            margin:100px auto;     
+            position: relative;    
+    
+        }
+        #btn-box{
+            right: 10px;
+            bottom: 10px;
+            position:absolute;
+        }
+          
+        #btn-box li{
+            list-style: none;
+            float:left;         
+            width: 30px;
+            height: 20px;
+            margin-right:10px;
+            background:rgba(0,0,0,0.4);
+            color:skyblue;
+            text-align:center;
+            line-height: 20px;
+            border-radius: 5px;     /*边框圆滑*/
+            cursor: pointer;       /*小手*/
+        }
+        #img-box img{
+            width: 700px;         
+            height: 300px;
+            display:none;
+        }
+        #img-box .selected{
+            display:block;
+        } 
+        #btn-box .active{
+            background: #ffefaf;
+        }
+        #prve,#next{
+            position:absolute;
+            width: 30px;
+            height: 20px;
+            background:rgba(0,0,0,0.4);
+            color:skyblue;
+            bottom:10px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #prve{
+            left:10px;
+        }
+        #next{
+            left: 50px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="img-box">        
+            <img class="selected" src="img/1.jpg" >
+            <img src="img/2.jpg" >
+            <img src="img/3.jpg" >
+        </div>
+    <ul id="btn-box">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <span id="prve">&lt;</span>
+    <span id="next">&gt;</span>
+    </div>
+    <script src="jquery-1.12.4.js"></script>   
+    <script>
+        $('#btn-box li').on('click',function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            $('#img-box img').eq($(this).index()).addClass('selected').siblings().removeClass('selected');
+        })
+        $('prve').on('click',function(){
+            
+        })
+    </script>
+</body>
+</html>
